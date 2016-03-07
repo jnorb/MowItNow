@@ -13,7 +13,8 @@ class Field(toprightx: Int, toprighty: Int) {
   /**
    * Set of mowers on that field
    */
-  var mowers = Set[Mower]()
+  private var _mowers = Set[Mower]()
+  def mowers = _mowers
   
   /**
    * Returns true if pos is inside the field
@@ -53,7 +54,7 @@ class Field(toprightx: Int, toprighty: Int) {
   @throws(classOf[MowerAlreadyHereException])
   def addMower(mower: Mower)
   {
-	  if (!hasMowerOn(mower.position)) mowers += mower else throw new MowerAlreadyHereException(mower.position)
+	  if (!hasMowerOn(mower.position)) _mowers += mower else throw new MowerAlreadyHereException(mower.position)
   }
   
 }
