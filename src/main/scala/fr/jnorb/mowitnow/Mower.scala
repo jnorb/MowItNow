@@ -13,8 +13,11 @@ class Mower(name: String, field: Field, initialPosition: Position, initialDirect
   require(field.hasPosition(initialPosition), "Mower must be on a position contained in the field")
   
   // mutable values because position and direction can change according to MowerCommands
-  var position = initialPosition;
-  var direction = initialDirection;
+  private var _position = initialPosition;
+  private var _direction = initialDirection;
+  
+  def position = _position
+  def direction = _direction
   
   def addToField() {
     field.addMower(this)
@@ -28,13 +31,13 @@ class Mower(name: String, field: Field, initialPosition: Position, initialDirect
 
     
     cmd match {
-      case MowerCommand.Left => direction = Direction.left(direction)
-      case MowerCommand.Right => direction = Direction.right(direction)
+      case MowerCommand.Left => _direction = Direction.left(_direction)
+      case MowerCommand.Right => _direction = Direction.right(_direction)
       case MowerCommand.Ahead =>
-        val newPosition = position.ahead(direction);
+        val newPosition = _position.ahead(_direction);
         // only move mower (change position) if newPosition can be accessed
         if(field.canBeAccessed(newPosition)) {
-          position = newPosition
+          _position = newPosition
         }
     }
     
@@ -46,6 +49,6 @@ class Mower(name: String, field: Field, initialPosition: Position, initialDirect
    */
   override def toString(): String =
 //  name + " " + position + " " + direction;
-    position + " " + direction;
+    _position + " " + _direction;
 
 }
