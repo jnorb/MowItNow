@@ -20,3 +20,4 @@ Execute jar :
 Results are shown in standard output.
 
 Test
+Test2
