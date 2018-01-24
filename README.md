@@ -18,3 +18,5 @@ Execute jar :
 	./run.sh inputfile
 
 Results are shown in standard output.
+
+Test
